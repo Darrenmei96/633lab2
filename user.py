@@ -1,3 +1,5 @@
+n = 500
+
 class User:
     def __init__(filename):
         self.key1 = []
@@ -37,3 +39,8 @@ class User:
         for i in range(1,501):
             answer += abs(self.dwell[i]-self.dwell[j])/self.dwell[j]
         return answer
+    
+    def deviation(dwell, fly):
+        d = (((1/(n-1))*dwell) + ((1/n)*fly))*50
+        return d
+        
