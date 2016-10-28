@@ -47,16 +47,10 @@ class User:
     
     #
     def fa(dev, thresh):
-        accept = 0
-        if dev <= thresh:
-            accept = 1
-        return accept
+        return dev <= thresh 
             
     def fr(dev): 
-        reject = 0
-        if dev >= thresh:
-            reject = 1
-        return reject
+        return dev >= thresh 
         
     def far(fr):
         
