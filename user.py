@@ -1,4 +1,5 @@
 n = 500
+thresh = 0.70
 
 class User:
     def __init__(filename):
@@ -43,4 +44,24 @@ class User:
     def deviation(dwell, fly):
         d = (((1/(n-1))*dwell) + ((1/n)*fly))*50
         return d
+    
+    #
+    def fa(dev, thresh):
+        accept = 0
+        if dev <= thresh:
+            accept = 1
+        return accept
+            
+    def fr(dev): 
+        reject = 0
+        if dev >= thresh:
+            reject = 1
+        return reject
+        
+    def far(fr):
+        
+        
+        
+    def frr(fr): 
+        
         
