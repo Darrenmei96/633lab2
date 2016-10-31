@@ -40,14 +40,20 @@ def fa(dev,threshold):
     return 1 if dev <= threshold else 0
 
 def sigmas(trefs, tmons):
-        answer, count = 0.0, 0
-        for i in range(0,len(trefs)):
-            try:
-                answer += abs(trefs[i]-tmons[i])/float(tmons[i])
-                count += 1
-            except ZeroDivisionError:
-                pass
-        return answer, count
+    answer, count = 0.0, 0
+    for i in range(0,len(trefs)):
+        try:
+            answer += abs(trefs[i]-tmons[i])/float(tmons[i])
+            count += 1
+        except ZeroDivisionError:
+            pass
+    return answer, count
+
+def devs(flyrefs,flymons,dwellrefs,dwellmons):
+    dg,n1 = sigmas(flyrefs,flymons)
+    mg,n2 = sigmas(dwellrefs,dwellmons)
+    d = (dg/(n1-1) + (mg/n2))*50
+    return d
 
 user = []
 for i in range (1,6):
@@ -66,18 +72,41 @@ for i in range(0,5):
     tmp = []
     tmp2 = []
     for x in range (1,6):
-        tmp.append(user[i].deviation(x))
-        tmp2.append(fr(tmp[x-1],70))
+        deviation = devs(user[i].fly[0:n],user[i].fly[x*n:x*n+n],user[i].dwell1[0:n],user[i].dwell1[x*n:x*n+n])
+        tmp.append(deviation)
+        tmp2.append(fr(deviation,70))
     deviations.append(tmp)
     falserejects.append(tmp2)
+
+#calculate the false accept deviations
+fadeviations = []
+falseaccepts = []
+for i in range(0, 5):
+    tmp = []
+    tmp2 = []
+    for x in range (0,5):
+        #if the same user, skip
+        if x == i:
+            continue
+        tmp3 = []
+        tmp4 = []
+        for y in range (1,6):
+            deviation = devs(user[i].fly[0:n],user[x].fly[y*n:y*n+n],user[i].dwell1[0:n],user[x].dwell1[y*n:y*n+n])
+            tmp3.append(deviation)
+            tmp4.append(fa(deviation,70))
+        tmp.append(tmp3)
+        tmp2.append(tmp4)
+    fadeviations.append(tmp)
+    falseaccepts.append(tmp2)
 
 for i in range(0,5):
     print("User "+ str(i+1))
     print("Deviations: ", deviations[i])
-    print("False Rejects: ",falserejects)
+    print("False Rejects: ", falserejects[i])
+    for j in range (0,4):
+        usrno = j + 1
+        if i == j:
+            usrno += 1
+        print("FA Deviations User "+str(usrno), ": ", fadeviations[i][j])
+        print("False Accepts: ", falseaccepts[i][j])
     print("")
-
-#calculate the false accept deviations
-fadeviations = []
-for i in range(0, 5):
-    
