@@ -68,11 +68,13 @@ def printPriv():
     if __name__ == "__main__":
         main()
     
-
-#Runs main function the first time 
-if __name__ == "__main__":
+def starthere():
     print("Please enter username")
     user = users.get(input())
     main()
 
-    
+"""
+#Runs main function the first time 
+if __name__ == "__main__":
+    starthere()
+""" 

@@ -9,17 +9,10 @@ matrix = [[5,5,5,5,5,5],
           [3,0,4,0,1,0],
           [0,0,3,3,0,0],
           [4,0,0,1,1,0],
-          [0,5,0,0,1,0,1]   
+          [0,5,0,1,0,1]   
           ]
 
 class User:
-    def __init__():
-        role = 0
-        
-
-
-
-
 #Main function, runs appropriate functions 
 def main():
     print("Main Menu:\n1-Print Current User Role\n2-Change User Access\n3-Print Matrix")
@@ -37,11 +30,10 @@ def assign():
     option = int(input())
     if option == 1:
         
+        
 
     
     
-
-
 #Prints the current user's role 
 def printRole():
     print("")

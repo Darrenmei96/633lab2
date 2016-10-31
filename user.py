@@ -1,5 +1,6 @@
 n = 500
 dataloc = "Lab2-Sample-Files\\"
+import DAC as dac
 
 class User:
     def __init__(self):
@@ -125,3 +126,5 @@ for i in range(0,5):
         print("False Accepts: ", falseaccepts[i][j])
         print("False Accept Rate(Threshold",user[i].threshold, "): ", rate(falseaccepts[i][j])*100, "%")
     print("")
+
+dac.starthere()
