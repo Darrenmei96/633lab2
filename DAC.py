@@ -1,5 +1,6 @@
 #Question 3.1
 
+#Global Dict. and Access Control Matrix
 perm = {0: ' - ', 1: ' r ', 2: ' w ', 3 : ' rw', 4 : ' rx', 5 : 'rwx'}
 users = {'User1':0, 'User2':1, 'User3':2, 'User4':3,'User5':4}
 files = {0 : 'File1', 1 : 'File2', 2 : 'File3', 3 : 'File4', 4 : 'File5', 5 : 'File6'}
@@ -12,6 +13,7 @@ matrix = [[5,5,5,5,5,5],
           [0,5,0,0,1,0,1]   
           ]
 
+#Main Menu 
 def main():
     print("\nMain Menu\nOptions \n 1-Print User Priveleges \n 2-Change Priv\n 3-Print Matrix\n4-Exit")
     
@@ -23,7 +25,7 @@ def main():
     elif option == 3:
         printMatrix()
     
-
+#Change Privelage of current user
 def changePriv():
     print("Enter the file you wish to change: File1-0   File2-1   File3-2   File4-3   File5-4   File6-5")
     fileNo = int(input())
@@ -33,12 +35,14 @@ def changePriv():
     if __name__ == "__main__":
         main()
 
+#Authorize the users request (not working yet)
 def authorize(request):
         if matrix[user][request] == 0:
             return False
         else:
             return True    
-           
+
+#Print matrix 
 def printMatrix():
     print("       |F1   |F2   |F3   |F4   |F5   |F6 \n")
     print(" User1 | "+perm.get(matrix[0][0])+" | "+perm.get(matrix[0][1])+" | "+perm.get(matrix[0][2])+" | "+perm.get(matrix[0][3])+" | "+perm.get(matrix[0][4])+" | "+perm.get(matrix[0][5]))
@@ -65,7 +69,8 @@ def printPriv():
     if __name__ == "__main__":
         main()
     
-        
+
+#Runs main function the first time 
 if __name__ == "__main__":
     main()
 
